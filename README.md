@@ -1,5 +1,5 @@
-# SSO-UNILA
-Library PHP untuk memudahkan aplikasi menggunakan fasilitas login SSO Universitas Lampung.
+# SSO-unisa
+Library PHP untuk memudahkan aplikasi menggunakan fasilitas login SSO UNISA.
 
 ## Instalasi di Laravel
 1. Install Composer di Laptop/PC anda
@@ -8,9 +8,9 @@ Library PHP untuk memudahkan aplikasi menggunakan fasilitas login SSO Universita
 
         composer install
 
-3. Install library *Unila/SSO* dengan menjalankan perintah berikut di terminal *project* anda:
+3. Install library *unisa/SSO* dengan menjalankan perintah berikut di terminal *project* anda:
 
-        composer require unila/sso
+        composer require unisa/sso
 
 ## Penggunaan
 
@@ -54,9 +54,9 @@ Fungsi ini digunakan untuk mengecek apakah user pernah berhasil diotentikasi ata
 
 Pemanggilan ini akan mengakhiri otentikasi user.
 
-    SSO::logout(url('http://unila.ac.id'));
+    SSO::logout(url('http://unisayogya.ac.id'));
 
-Pemanggilan ini akan mengakhiri otentikasi user dan me-*redirect* ke halaman dashboard Unila.
+Pemanggilan ini akan mengakhiri otentikasi user dan me-*redirect* ke halaman dashboard unisa.
 
 Kedua fungsi diatas digunakan untuk menerapkan Single Logout.
 
@@ -113,7 +113,7 @@ Fungsi ini digunakan untuk mengecek otentikasi pada SSO atau bawaan laravel
 
 ## Penggunaan di Codeigniter 4 menggunakan Composer
 
-Untuk penggunaan di Codeigniter 4 terdapat perubahan di folder `vendor/apereo/phpcas`. Ekstrak file `phpcas.zip` dalam folder `vendor/unila/sso` kemudiaan salin dan letakkan ke dalam folder `vendor/apereo/phpcas`.
+Untuk penggunaan di Codeigniter 4 terdapat perubahan di folder `vendor/apereo/phpcas`. Ekstrak file `phpcas.zip` dalam folder `vendor/unisa/sso` kemudiaan salin dan letakkan ke dalam folder `vendor/apereo/phpcas`.
 
 ## Thanks to
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Sign-on Authentication
  *
@@ -6,8 +7,9 @@
  * @copyright   2021 Muhammad Ikhsan
  * @license     MIT
  * @package     SSO
-*
+ *
  */
+
 namespace SSO;
 
 use phpCAS;
@@ -19,7 +21,7 @@ use phpCAS;
 /**
  * CAS server host address
  */
-define('CAS_SERVER_HOST', 'login.unila.ac.id');
+define('CAS_SERVER_HOST', 'sso-staging.unisayogya.ac.id');
 
 /**
  * CAS server uri
@@ -66,21 +68,24 @@ class SSO
    *
    * @return bool Authentication
    */
-  public static function authenticate() {
+  public static function authenticate()
+  {
     return phpCAS::forceAuthentication();
   }
 
-  public static function cookieClear() {
+  public static function cookieClear()
+  {
     if (isset($_COOKIE['PHPSESSID'])) {
-        unset($_COOKIE['PHPSESSID']);
-        return setcookie('PHPSESSID', '', time() - 3600, '/'); // empty value and old timestamp
+      unset($_COOKIE['PHPSESSID']);
+      return setcookie('PHPSESSID', '', time() - 3600, '/'); // empty value and old timestamp
     }
   }
 
-  public static function ciCookieClear() {
+  public static function ciCookieClear()
+  {
     if (isset($_COOKIE['ci_session'])) {
-        unset($_COOKIE['ci_session']);
-        return setcookie('ci_session', '', time() - 3600, '/'); // empty value and old timestamp
+      unset($_COOKIE['ci_session']);
+      return setcookie('ci_session', '', time() - 3600, '/'); // empty value and old timestamp
     }
   }
 
@@ -89,19 +94,21 @@ class SSO
    *
    * @return bool Authentication
    */
-  public static function check() {
+  public static function check()
+  {
     return phpCAS::checkAuthentication();
   }
 
   /**
    * Logout from SSO with URL redirection options
    */
-  public static function logout($url='') {
-    
+  public static function logout($url = '')
+  {
+
     if (isset($_COOKIE['PHPSESSID'])) {
       unset($_COOKIE['PHPSESSID']);
     }
-    
+
     if (isset($_COOKIE['ci_session'])) {
       unset($_COOKIE['ci_session']);
     }
@@ -117,17 +124,17 @@ class SSO
    *
    * @return Object User
    */
-  public static function getUser() {
-    
+  public static function getUser()
+  {
+
     // Get attribute release from CAS SERVER
     $details = phpCAS::getAttributes();
-    
+
     // Create new user object, initially empty.
     $user               = new \stdClass();
     $user->username     = phpCAS::getUser();
-    $user->nm_pengguna  = $details['nm_pengguna'];
-    $user->email        = $details['email'];
-    $user->a_aktif      = $details['a_aktif'];
+    $user->email     = phpCAS::getUser();
+    $user->first_name  = $details['first_name'];
 
     return $user;
   }
@@ -141,7 +148,8 @@ class SSO
    *
    * @param string $cas_path Path to CAS.php
    */
-  public static function setCASPath($cas_path) {
+  public static function setCASPath($cas_path)
+  {
     require $cas_path;
 
     // Initialize CAS client.
@@ -151,12 +159,12 @@ class SSO
   /**
    * Initialize CAS client. Called by setCASPath().
    */
-  private static function init() {
+  private static function init()
+  {
     // Create CAS client.
     phpCAS::client(CAS_VERSION_2_0, CAS_SERVER_HOST, CAS_SERVER_PORT, CAS_SERVER_URI);
 
     // Set no validation.
     phpCAS::setNoCasServerValidation();
   }
-
 }
