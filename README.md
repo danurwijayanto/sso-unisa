@@ -37,10 +37,8 @@ Pemanggilan ini akan me-*redirect* browser ke login SSO. Jika otentikasi berhasi
 Fungsi ini akan mengembalikan object `stdClass` yang memiliki detail dari user yang berhasil diotentikasi. Potongan kode nya sebagai berikut:
 
     $user = SSO::getUser();
-    echo $user->username                // menampilkan username dari user
     echo $user->email                   // menampilkan email dari user
-    echo $user->nm_pengguna             // menampilkan nama lengkap dari user
-    echo $user->a_aktif                 // menampilkan status aktif dari user
+    echo $user->first_name             // menampilkan nama lengkap dari user
 
 ### 3. Memeriksa otentikasi
 
